@@ -21,7 +21,11 @@ export default {
 			const data = url.searchParams.get("data") ?? "error parsing data"
 			const ec = url.searchParams.get("ec") ?? "M"
 			const version = url.searchParams.get("version")
-			const code = await QRCode.toString(data, { 'errorCorrectionLevel' : ec , 'version' : version})
+			try {
+				var code = await QRCode.toString(data, { 'errorCorrectionLevel' : ec , 'version' : version})
+			} catch {
+				return new Response('Something went wrong.', {'status' : 500})
+			}
 			return new Response(code, { headers: { 'content-type' : 'image/svg+xml'}})
 		}
 		else {
