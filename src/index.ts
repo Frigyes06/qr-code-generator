@@ -10,9 +10,29 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
+var QRCode = require('qrcode');
+import manual from "./manual.html"
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
+		const url = new URL(request.url)
+		if (url.searchParams.get("data")) {
+			// console.log("there is a query!")
+			const data = url.searchParams.get("data") ?? "error parsing data"
+			const ec = url.searchParams.get("ec") ?? "M"
+			const version = url.searchParams.get("version")
+			const code = await QRCode.toString(data, { 'errorCorrectionLevel' : ec , 'version' : version})
+			return new Response(code, { headers: { 'content-type' : 'image/svg+xml'}})
+		}
+		else {
+			if(request.method == "POST") {
+				const textInput = await request.formData()
+				const data = textInput.get("text")?.toString() || "Invalid data"
+				// console.log(data)
+				const code = await QRCode.toString(data)
+				return new Response(code, { headers: { 'content-type' : 'image/svg+xml'}})
+			}
+			return new Response(manual, { headers: { 'content-type' : 'text/html'}})
+		}
 	},
 } satisfies ExportedHandler<Env>;
