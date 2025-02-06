@@ -33,8 +33,8 @@ export default {
 				const textInput = await request.formData()
 				const data = textInput.get("text")?.toString() || "Invalid data"
 				// console.log(data)
-				const code = await QRCode.toString(data)
-				return new Response(code, { headers: { 'content-type' : 'image/svg+xml'}})
+				var redirectUrl = String(new URL(request.url + "?data=" + data))
+				return Response.redirect(redirectUrl)
 			}
 			return new Response(manual, { headers: { 'content-type' : 'text/html'}})
 		}
