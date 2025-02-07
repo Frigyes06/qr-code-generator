@@ -10,7 +10,7 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
-var QRCode = require('qrcode');
+import QRCode from "qrcode"
 import manual from "./manual.html"
 
 export default {
