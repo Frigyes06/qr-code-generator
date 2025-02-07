@@ -84,7 +84,7 @@ If no query parameters are provided, the worker will serve an HTML page promptin
 
 ### Imports:
 - **QRCode**: The `qrcode` library is used to generate the QR code. It provides various options for customization such as error correction level and version.
-- **manual.html**: A static HTML file that serves as the user manual for the worker.
+- **manual.html**: A static HTML file that allows for the user to input data in a HTML form
 
 ### Fetch Event Handler:
 The `fetch` event handler processes both `GET` and `POST` requests:
