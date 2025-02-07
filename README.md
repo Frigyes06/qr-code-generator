@@ -1,13 +1,13 @@
 # QR Code Generator Cloudflare Worker
 
-This is a Cloudflare Worker that generates QR codes based on user input. It supports both `GET` and `POST` requests for generating QR codes dynamically. The worker can create a QR code from a URL query parameter or form data, and it provides a manual HTML page for users who are unsure of how to use the service.
+This is a Cloudflare Worker that generates QR codes based on user input. It supports both `GET` and `POST` requests for generating QR codes dynamically. The worker can create a QR code from a URL query parameter or form data, and it provides an HTML page for user input if no data is provided in the query.
 
 ## Features
 
 - **Generate QR Codes via GET requests**: Users can pass a `data` query parameter to generate a QR code.
 - **Support for POST requests**: Users can submit form data to create a QR code.
 - **Customizable QR Code Options**: Users can specify the error correction level (`ec`) and version (`version`) of the QR code.
-- **Manual Page**: When no data is provided, the worker returns an HTML page explaining how to use the worker.
+- **Manual Input Page**: When no data is provided, the worker returns an HTML page prompting the user for data to encode.
 - **SVG Output**: The QR code is returned as an SVG image.
 
 ## Setup and Installation
