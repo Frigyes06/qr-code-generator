@@ -74,9 +74,9 @@ A `301 Moved Permanently` redirect to:
 GET http://localhost:8787/?data=My%20QR%20Code
 ```
 
-### Manual Page
+### Manual Input Page
 
-If no query parameters are provided, the worker will serve a manual HTML page to explain how to use the worker.
+If no query parameters are provided, the worker will serve an HTML page prompting the user for a string of data to encode.
 
 ---
 
