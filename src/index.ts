@@ -33,7 +33,7 @@ export default {
 				const textInput = await request.formData()
 				const data = textInput.get("text")?.toString() || "Invalid data"
 				// console.log(data)
-				var redirectUrl = String(request.url + "?data=" + data)
+				var redirectUrl = String(url.origin + "/?data=" + encodeURIComponent(data))
 				return new Response("OK", { 'status' : 301, headers: { 'location' : redirectUrl}})
 			}
 			return new Response(manual, { headers: { 'content-type' : 'text/html'}})
